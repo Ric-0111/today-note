@@ -1,0 +1,7 @@
+{
+  "siteName": "TODAY NOTE",
+  "tagline": "毎朝5分で、世の中の大切な動きが分かるニュースサイト",
+  "dataBase": "data/",
+  "searchDays": 120,
+  "recentCategoryDays": 7
+}

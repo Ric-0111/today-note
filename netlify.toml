@@ -1,0 +1,22 @@
+# Netlify の設定ファイル
+# サイトは「このフォルダそのまま」を公開します（ビルド作業は不要です）。
+
+[build]
+  publish = "."
+  # data / scripts / .github フォルダだけが変わったときは、サイトを再公開しません。
+  # （毎朝のニュース更新で、Netlifyの無料枠を使い切らないための設定です）
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude)data' ':(exclude)scripts' ':(exclude).github'"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net https://raw.githubusercontent.com; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
