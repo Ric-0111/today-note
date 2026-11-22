@@ -28,6 +28,10 @@ import sys
 import unicodedata
 import urllib.request
 import xml.etree.ElementTree as ET
+from collections import Counter
+from concurrent.futures import ThreadPoolExecutor
+from html.parser import HTMLParser
+from urllib.parse import urljoin
 from pathlib import Path
 
 JST = dt.timezone(dt.timedelta(hours=9))
@@ -43,18 +47,25 @@ CATEGORY_KEYS = [
 # ----------------------------------------------------------------------
 
 
-def fetch(url, timeout=20, limit=3_000_000):
+def fetch(url, timeout=20, limit=3_000_000, truncate=False, want_type=False):
     if not re.match(r"^https?://", url):
         raise ValueError("http(s) 以外のアドレスは使えません")
     req = urllib.request.Request(
         url,
-        headers={"User-Agent": UA, "Accept": "application/rss+xml, application/xml, text/xml, */*"},
+        headers={
+            "User-Agent": UA,
+            "Accept": "application/rss+xml, application/xml, text/xml, text/html, */*",
+            "Accept-Language": "ja,en;q=0.5",
+        },
     )
     with urllib.request.urlopen(req, timeout=timeout) as res:
         data = res.read(limit + 1)
+        ctype = res.headers.get("Content-Type", "")
     if len(data) > limit:
-        raise ValueError("データが大きすぎます")
-    return data
+        if not truncate:
+            raise ValueError("データが大きすぎます")
+        data = data[:limit]
+    return (data, ctype) if want_type else data
 
 
 def to_utf8(data):
@@ -215,6 +226,96 @@ def read_feed(feed):
 
 
 # ----------------------------------------------------------------------
+# 1.5 記事ページの「紹介文」と「画像」を読む
+#     RSSに概要がない記事のために、記事ページに書かれている紹介文（og:description など）を使う。
+#     配信元が自分で書いた文章を、そのまま短く整えるだけで、こちらで文章を作ることはしない。
+# ----------------------------------------------------------------------
+
+
+class MetaParser(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.meta = {}
+
+    def handle_starttag(self, tag, attrs):
+        if tag != "meta":
+            return
+        a = dict(attrs)
+        key = (a.get("property") or a.get("name") or "").lower()
+        content = a.get("content")
+        if key and content and key not in self.meta:
+            self.meta[key] = content
+
+
+def decode_html(data, ctype):
+    m = re.search(r"charset=([\w\-]+)", ctype or "", re.I)
+    enc = m.group(1) if m else None
+    if not enc:
+        m2 = re.search(rb"<meta[^>]+charset=[\"']?([\w\-]+)", data[:3000], re.I)
+        enc = m2.group(1).decode("ascii", "ignore") if m2 else "utf-8"
+    try:
+        return data.decode(enc, errors="replace")
+    except LookupError:
+        return data.decode("utf-8", errors="replace")
+
+
+def fetch_page_meta(url):
+    data, ctype = fetch(url, timeout=10, limit=400_000, truncate=True, want_type=True)
+    text = decode_html(data, ctype)
+    head = text.split("</head>", 1)[0]
+    parser = MetaParser()
+    try:
+        parser.feed(head)
+    except Exception:
+        pass
+    meta = parser.meta
+    desc = meta.get("og:description") or meta.get("description") or meta.get("twitter:description") or ""
+    img = meta.get("og:image") or meta.get("twitter:image") or ""
+    return {"description": strip_html(desc), "image": clean_image_url(urljoin(url, img)) if img else ""}
+
+
+def enrich(items, budget=80, workers=6):
+    """概要や画像がない記事について、記事ページから補う（1回の実行で最大 budget 件）"""
+    targets = [i for i in items if not i.get("checked") and (not i.get("summary") or not i.get("image"))]
+    targets.sort(key=lambda i: (bool(i.get("summary")), -int(i.get("importance", 1))))
+    targets = targets[:budget]
+    if not targets:
+        return
+
+    def work(it):
+        try:
+            return it, fetch_page_meta(it["url"])
+        except Exception as ex:
+            return it, {"error": type(ex).__name__}
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        results = list(pool.map(work, targets))
+
+    # どの記事でも同じ紹介文・同じ画像（サイト全体の説明やロゴ）は、記事の内容ではないので使わない
+    dcount = Counter(norm(r.get("description", "")) for _, r in results if r.get("description"))
+    icount = Counter(r.get("image", "") for _, r in results if r.get("image"))
+    got_s = got_i = errors = 0
+    for it, r in results:
+        it["checked"] = True
+        if "error" in r:
+            errors += 1
+            continue
+        d = r.get("description", "")
+        # 紹介文が、その記事のタイトルと言葉をほとんど共有していなければ、記事の内容とは言えないので使わない
+        related = len(bigrams(norm_title(it["title"])) & bigrams(norm_title(d))) >= 3
+        if d and related and dcount[norm(d)] < 2 and not it.get("summary"):
+            s = make_summary(d, it["title"])
+            if s:
+                it["summary"] = s
+                got_s += 1
+        im = r.get("image", "")
+        if im and icount[im] < 2 and not it.get("image") and not re.search(r"logo|default|noimage|no_image|dummy", im, re.I):
+            it["image"] = im
+            got_i += 1
+    print(f"記事ページから補完：{len(targets)}件を確認 → 概要 {got_s}件 / 画像 {got_i}件 を追加（開けなかった記事 {errors}件）")
+
+
+# ----------------------------------------------------------------------
 # 2. 文章を整える
 # ----------------------------------------------------------------------
 
@@ -324,9 +425,19 @@ GLOSSARY = [
 ]
 
 
+# 別の意味でも使われる言葉は、文脈の言葉がそろったときだけ説明を付ける
+GLOSSARY_CONTEXT = {
+    "解散": ["衆議院", "衆院", "首相", "総選挙", "国会"],
+    "制裁": ["国連", "経済制裁", "制裁措置", "ロシア", "北朝鮮", "イラン", "米国", "中国"],
+}
+
+
 def pick_glossary(text, limit=2):
     found, taken = [], []
     for term, expl in GLOSSARY:
+        need = GLOSSARY_CONTEXT.get(term)
+        if need and not any(w in text for w in need):
+            continue
         if re.fullmatch(r"[A-Za-z0-9&]+", term):
             pat = r"(?<![A-Za-z0-9])" + re.escape(term) + r"(?![A-Za-z0-9])"
         else:
@@ -498,6 +609,7 @@ def main():
     ap.add_argument("--data", default=str(ROOT / "data"))
     ap.add_argument("--now", help="テスト用：現在時刻を指定（例 2026-11-22T06:00:00+09:00）")
     ap.add_argument("--dry-run", action="store_true", help="保存せずに結果だけ表示する")
+    ap.add_argument("--no-fetch", action="store_true", help="記事ページの確認をしない（テスト用）")
     args = ap.parse_args()
 
     conf = load_json(args.feeds, None)
@@ -557,7 +669,7 @@ def main():
 
     # --- 古い記事・対象外の記事を除く ---
     oldest = now - dt.timedelta(hours=fresh_hours)
-    newest = now + dt.timedelta(hours=1)
+    newest = now + dt.timedelta(minutes=15)
     candidates = []
     stats = {"no_date": 0, "old": 0, "dropped": 0, "seen": 0}
     for it in raw:
@@ -618,9 +730,6 @@ def main():
                     break
         rep["_main"] = any(m["_main"] for m in group)
         rep["_score"] = importance_score(rep, len(sources))
-        gl = pick_glossary(rep["title"] + " " + rep["summary"])
-        if gl:
-            rep["glossary"] = gl
         new_items.append(rep)
 
     # 重要度：★★★は 5点以上、★★は 3点以上、それ以外は★。★★★は1日に最大 max_three 件まで
@@ -635,6 +744,16 @@ def main():
             else:
                 three += 1
         it["importance"] = imp
+
+    # --- 概要や画像がない記事を、記事ページから補う。そのあとで用語の説明を付ける ---
+    if not args.no_fetch:
+        enrich(existing_items + new_items)
+    for it in existing_items + new_items:
+        gl = pick_glossary(it.get("title", "") + " " + it.get("summary", ""))
+        if gl:
+            it["glossary"] = gl
+        else:
+            it.pop("glossary", None)
 
     # --- 今日の分とまとめる ---
     merged = existing_items + [public_item(i) for i in new_items]
