@@ -464,8 +464,8 @@ CAT_WORDS = {
     "economy": ["株価", "日経平均", "円安", "円高", "為替", "金利", "日銀", "物価", "GDP", "景気", "賃上げ", "関税", "国債", "貿易", "インフレ", "利上げ", "利下げ", "財務"],
     "tech": ["AI", "人工知能", "生成AI", "半導体", "アプリ", "サイバー", "スマホ", "ロボット", "量子", "ChatGPT", "OpenAI", "ソフトウェア", "データセンター"],
     "science": ["研究", "実験", "医療", "病院", "ワクチン", "がん", "治療", "薬", "感染", "宇宙", "探査機", "ノーベル", "iPS", "ロケット"],
-    "business": ["企業", "決算", "買収", "M&A", "新製品", "発売", "提携", "業績", "上場", "社長", "工場", "経営"],
-    "world": ["米国", "アメリカ", "中国", "ロシア", "ウクライナ", "ガザ", "イスラエル", "韓国", "北朝鮮", "欧州", "EU", "NATO", "国連", "大統領", "首脳会談", "トランプ", "中東", "イラン", "台湾"],
+    "business": ["企業", "決算", "買収", "M&A", "新製品", "発売", "提携", "業績", "上場", "社長", "工場", "経営", "進出", "販売", "商品", "メーカー"],
+    "world": ["ロシア", "ウクライナ", "ガザ", "イスラエル", "北朝鮮", "欧州", "EU", "NATO", "国連", "大統領", "首脳会談", "トランプ", "中東", "イラン", "バーレーン", "停戦"],
     "society": ["逮捕", "容疑", "事件", "事故", "殺人", "裁判", "判決", "地裁", "高裁", "最高裁", "送検", "火災", "行方不明", "詐欺", "死亡"],
 }
 
@@ -488,6 +488,10 @@ def has_word(text, w):
     return w in text
 
 
+# 国名だけでは海外ニュースとは限らない（例：米国で発売された商品）ので、弱い手がかりとして扱う
+WEAK_WORLD = ["米国", "アメリカ", "中国", "韓国", "台湾", "欧米", "海外"]
+
+
 def classify(title, summary, feed_cat):
     if feed_cat in CATEGORY_KEYS:
         return feed_cat
@@ -501,6 +505,9 @@ def classify(title, summary, feed_cat):
                 s += 1
         if s:
             scores[cat] = s
+    weak = sum(1 for w in WEAK_WORLD if has_word(title, w))
+    if weak:
+        scores["world"] = scores.get("world", 0) + 1
     if not scores:
         return "domestic"
     # 災害は、ほかの分類より優先する
@@ -664,6 +671,19 @@ def main():
             if isinstance(i, dict) and not i.get("sample"):
                 seen_ids.add(i.get("id"))
                 prior.append(prepare({"title": i.get("title", ""), "url": i.get("url", "")}))
+    # すでに保存してある記事のうち、日時が未来のもの（配信元の日時の誤りなど）は一度取り除く。
+    # 次回以降、時刻が来てからあらためて取り込まれる。
+    limit_future = (now + dt.timedelta(minutes=15)).isoformat()
+    kept = []
+    for i in existing_items:
+        pub = parse_date(i.get("published", ""))
+        if pub is not None and pub > now + dt.timedelta(minutes=15):
+            seen_ids.discard(i.get("id"))
+            print(f"未来の日時のため取り除きました：{i.get('title', '')[:30]}（{i.get('published')}）")
+            continue
+        kept.append(i)
+    existing_items = kept
+    del limit_future
     existing_prepared = [prepare({"title": i.get("title", ""), "url": i.get("url", "")}) for i in existing_items]
     skip_against = prior + existing_prepared
 
