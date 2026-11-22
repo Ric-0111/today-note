@@ -543,6 +543,7 @@
   // data/index.json から、日付の一覧（新しい順）を取り出す
   function loadIndex() {
     return fetchData('index.json').then(function (idx) {
+      state.indexUpdated = idx && idx.updated ? idx.updated : '';
       var list = Array.isArray(idx && idx.dates) ? idx.dates : [];
       var dates = [];
       list.forEach(function (d) {
@@ -598,64 +599,129 @@
   // ページ：トップ
   // ------------------------------------------------------------
 
+  function pad2(n) {
+    return (n < 10 ? '0' : '') + n;
+  }
+
+  // 'YYYY-MM-DD' から delta 日ずらした日付を返す
+  function shiftDate(ds, delta) {
+    var o = dateObj(ds);
+    var d = new Date(Date.UTC(o.y, o.m - 1, o.d + delta));
+    return d.getUTCFullYear() + '-' + pad2(d.getUTCMonth() + 1) + '-' + pad2(d.getUTCDate());
+  }
+
+  function jstDateOf(iso) {
+    var p = jstParts(new Date(iso));
+    return p.year + '-' + p.month + '-' + p.day;
+  }
+
+  function dayLabel(prefix, ds, count) {
+    var o = dateObj(ds);
+    return prefix + '（' + o.m + '月' + o.d + '日）・' + count + '件';
+  }
+
   function pageHome() {
     setTitle('');
     setMain([statusNode('読み込み中…')]);
 
+    var today = todayJST();
+    var yesterday = shiftDate(today, -1);
+    var from = Date.parse(yesterday + 'T00:00:00+09:00'); // 昨日の0時（日本時間）
+    var to = Date.now() + 15 * 60 * 1000; // いま（少しの時計のずれは許す）
+
+    loadIndex()
+      .then(function (dates) {
+        // 公開時刻で絞るので、更新日のファイルは念のため3日分を読む
+        var wanted = dates
+          .filter(function (d) {
+            return d.date >= shiftDate(today, -2) && d.date <= today;
+          })
+          .map(function (d) {
+            return d.date;
+          });
+        return loadDays(wanted);
+      })
+      .then(function (days) {
+        var seen = {};
+        var items = [];
+        var sample = false;
+        days.forEach(function (day) {
+          if (day.sample) sample = true;
+          day.items.forEach(function (it) {
+            var t = Date.parse(it.published);
+            var key = it.id || it.url;
+            if (isNaN(t) || t < from || t > to || seen[key]) return;
+            seen[key] = true;
+            items.push(it);
+          });
+        });
+        if (!items.length) return homeFallback();
+        renderHome(items, sample, today, yesterday);
+      })
+      .catch(function () {
+        homeFallback();
+      });
+  }
+
+  function renderHome(items, sample, today, yesterday) {
+    var nodes = [];
+    if (sample) nodes.push(sampleNotice());
+    if (state.indexUpdated) {
+      nodes.push(el('p', { class: 'updated', text: '更新：' + formatDateTime(state.indexUpdated, true) }));
+    }
+
+    var sorted = sortItems(items);
+
+    // 重要ニュース：★★以上から最大3件（無理に増やさない）
+    var top = sorted
+      .filter(function (i) {
+        return normImportance(i.importance) >= 2;
+      })
+      .slice(0, 3);
+    var inTop = new Set(top);
+
+    if (top.length) {
+      nodes.push(el('h2', { class: 'section-title', text: '重要ニュース' }));
+      nodes.push(renderItems(top));
+    }
+
+    // 昨日の0時から、いままで（今日 → 昨日の順）
+    var todayItems = [];
+    var yesterdayItems = [];
+    sorted.forEach(function (i) {
+      if (inTop.has(i)) return;
+      if (jstDateOf(i.published) === today) todayItems.push(i);
+      else yesterdayItems.push(i);
+    });
+
+    if (todayItems.length) {
+      nodes.push(el('h2', { class: 'day-heading', text: dayLabel('今日', today, todayItems.length) }));
+      nodes.push(renderItems(todayItems));
+    }
+    if (yesterdayItems.length) {
+      nodes.push(el('h2', { class: 'day-heading', text: dayLabel('昨日', yesterday, yesterdayItems.length) }));
+      nodes.push(renderItems(yesterdayItems));
+    }
+    setMain(nodes);
+  }
+
+  // 昨日以降の記事が1件もないとき（更新が止まっているなど）は、最後に保存された分を、日付つきで表示する
+  function homeFallback() {
     fetchData('latest.json')
       .then(function (day) {
         var items = sortItems(Array.isArray(day.items) ? day.items : []);
         var nodes = [];
-
         if (day.sample) nodes.push(sampleNotice());
-
-        var updatedText = '';
-        if (day.generated_at) updatedText = '更新：' + formatDateTime(day.generated_at, true);
-        if (day.date && day.date < todayJST()) {
-          updatedText +=
-            (updatedText ? '　' : '') + '※ 最新のニュースは ' + formatDateJa(day.date) + ' 分です';
-        }
-        if (updatedText) nodes.push(el('p', { class: 'updated', text: updatedText }));
-
-        if (!items.length) {
-          nodes.push(statusNode('今日のニュースはまだありません。'));
-          setMain(nodes);
-          return;
-        }
-
-        // 今日の重要ニュース：重要度★★以上から最大3件（無理に増やさない）
-        var top = items
-          .filter(function (i) {
-            return normImportance(i.importance) >= 2;
-          })
-          .slice(0, 3);
-        var inTop = new Set(top);
-        var rest = items
-          .filter(function (i) {
-            return !inTop.has(i);
-          })
-          .slice(0, 12);
-
-        if (top.length) {
-          nodes.push(el('h2', { class: 'section-title', text: '今日の重要ニュース' }));
-          nodes.push(renderItems(top));
-        }
-        if (rest.length) {
-          nodes.push(el('h2', { class: 'section-title', text: '今日のニュース' }));
-          nodes.push(renderItems(rest));
-        }
-
-        var shown = top.length + rest.length;
-        if (items.length > shown && day.date) {
+        if (day.date) {
           nodes.push(
-            el('p', { class: 'more' }, [
-              el('a', {
-                href: 'archive.html?d=' + encodeURIComponent(day.date),
-                text: 'この日のニュースをすべて見る（' + items.length + '件） →'
-              })
-            ])
+            el('p', {
+              class: 'notice',
+              text: '昨日以降のニュースがまだありません。最後に保存された ' + formatDateJa(day.date) + ' 分を表示しています。'
+            })
           );
         }
+        if (!items.length) nodes.push(statusNode('表示できるニュースがありません。'));
+        else nodes.push(renderItems(items.slice(0, 15)));
         setMain(nodes);
       })
       .catch(function () {
