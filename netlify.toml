@@ -16,7 +16,10 @@
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
     Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:; connect-src 'self' https://cdn.jsdelivr.net https://raw.githubusercontent.com; base-uri 'none'; form-action 'self'; frame-ancestors 'none'"
 
+# 画面のファイルは、開くたびに「更新があるか」をNetlifyに確認します。
+# 変更がなければ通信はほぼ発生せず、変更があれば自動で最新の画面になります。
+# （スマホのChromeでキャッシュを手動で消す必要はありません）
 [[headers]]
-  for = "/assets/*"
+  for = "/*"
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=0, must-revalidate"

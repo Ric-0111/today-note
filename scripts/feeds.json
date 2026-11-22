@@ -1,0 +1,31 @@
+{
+  "_comment": "ニュースを集めるRSSの一覧です。日本語で配信されているものだけを使います（英語の記事は、無料では正確に日本語へ直せないため）。category を auto にすると、記事の内容から分類します。main は『その媒体の主要ニュース』という印です。",
+  "feeds": [
+    { "name": "NHK", "url": "https://www3.nhk.or.jp/rss/news/cat0.xml", "category": "auto", "priority": 3, "main": true },
+    { "name": "NHK", "url": "https://www3.nhk.or.jp/rss/news/cat1.xml", "category": "society", "priority": 3 },
+    { "name": "NHK", "url": "https://www3.nhk.or.jp/rss/news/cat3.xml", "category": "science", "priority": 3 },
+    { "name": "NHK", "url": "https://www3.nhk.or.jp/rss/news/cat4.xml", "category": "politics", "priority": 3 },
+    { "name": "NHK", "url": "https://www3.nhk.or.jp/rss/news/cat5.xml", "category": "economy", "priority": 3 },
+    { "name": "NHK", "url": "https://www3.nhk.or.jp/rss/news/cat6.xml", "category": "world", "priority": 3 },
+
+    { "name": "朝日新聞", "url": "https://www.asahi.com/rss/asahi/newsheadlines.rdf", "category": "auto", "priority": 2, "main": true },
+    { "name": "毎日新聞", "url": "https://mainichi.jp/rss/etc/mainichi-flash.rss", "category": "auto", "priority": 2, "main": true },
+    { "name": "産経ニュース", "url": "https://www.sankei.com/rss/news/flash.xml", "category": "auto", "priority": 2 },
+    { "name": "時事通信", "url": "https://www.jiji.com/rss/ranking.rdf", "category": "auto", "priority": 2 },
+
+    { "name": "BBC News Japan", "url": "https://feeds.bbci.co.uk/japanese/rss.xml", "category": "world", "priority": 2 },
+
+    { "name": "厚生労働省", "url": "https://www.mhlw.go.jp/stf/news.rdf", "category": "science", "priority": 3 },
+    { "name": "日本銀行", "url": "https://www.boj.or.jp/rss/whatsnew.xml", "category": "economy", "priority": 3 },
+
+    { "name": "ITmedia NEWS", "url": "https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml", "category": "tech", "priority": 1 },
+    { "name": "ITmedia AI+", "url": "https://rss.itmedia.co.jp/rss/2.0/aiplus.xml", "category": "tech", "priority": 1 },
+    { "name": "ITmedia ビジネス", "url": "https://rss.itmedia.co.jp/rss/2.0/business_articles.xml", "category": "business", "priority": 1 }
+  ],
+  "settings": {
+    "fresh_hours": 30,
+    "max_items_per_day": 60,
+    "max_items_per_source_per_day": 12,
+    "max_three_star_per_day": 5
+  }
+}

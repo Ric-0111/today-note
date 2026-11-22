@@ -125,6 +125,14 @@
     });
   }
 
+  // ニュースのデータを読む。まず設定の場所（GitHub）から、だめならこのサイト内の data/ から
+  function fetchData(path) {
+    return fetchJSON(state.base + path).catch(function (err) {
+      if (state.base === 'data/') throw err;
+      return fetchJSON('data/' + path);
+    });
+  }
+
   function getParam(name) {
     return new URLSearchParams(window.location.search).get(name) || '';
   }
@@ -292,8 +300,10 @@
       text: item.summary || '概要は取得できませんでした。詳しくは元記事をご覧ください。'
     });
 
-    var background = item.background
-      ? el('p', { class: 'bg' }, [el('span', { class: 'bg-label', text: '背景・影響' }), item.background])
+    var bgText = item.background || item.glossary || '';
+    var bgLabel = item.background ? '背景・影響' : 'ことば';
+    var background = bgText
+      ? el('p', { class: 'bg' }, [el('span', { class: 'bg-label', text: bgLabel }), bgText])
       : null;
 
     // タップして開いたときに出る部分（元記事リンク・同じ話題の他の情報元）
@@ -529,7 +539,7 @@
 
   // data/index.json から、日付の一覧（新しい順）を取り出す
   function loadIndex() {
-    return fetchJSON(state.base + 'index.json').then(function (idx) {
+    return fetchData('index.json').then(function (idx) {
       var list = Array.isArray(idx && idx.dates) ? idx.dates : [];
       var dates = [];
       list.forEach(function (d) {
@@ -548,7 +558,7 @@
 
   function loadDay(date) {
     if (!DATE_RE.test(date)) return Promise.resolve(null);
-    return fetchJSON(state.base + 'days/' + date + '.json').catch(function () {
+    return fetchData('days/' + date + '.json').catch(function () {
       return null;
     });
   }
@@ -589,7 +599,7 @@
     setTitle('');
     setMain([statusNode('読み込み中…')]);
 
-    fetchJSON(state.base + 'latest.json')
+    fetchData('latest.json')
       .then(function (day) {
         var items = sortItems(Array.isArray(day.items) ? day.items : []);
         var nodes = [];
@@ -954,7 +964,7 @@
             all.push({
               item: item,
               text: normalizeText(
-                [item.title, item.summary, item.background, item.source, cat ? cat.label : ''].join(' ')
+                [item.title, item.summary, item.background, item.glossary, item.source, cat ? cat.label : ''].join(' ')
               )
             });
           });
