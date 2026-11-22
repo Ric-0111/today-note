@@ -295,10 +295,8 @@
     var heading = el('h3', { class: 'title' }, [titleBtn]);
 
     // 要約（RSSから取れなかったときは、その旨を正直に表示する）
-    var summary = el('p', {
-      class: 'summary',
-      text: item.summary || '概要は取得できませんでした。詳しくは元記事をご覧ください。'
-    });
+    // 概要がない記事は、閉じた状態ではタイトルだけにして、すっきり見せる
+    var summary = item.summary ? el('p', { class: 'summary', text: item.summary }) : null;
 
     var bgText = item.background || item.glossary || '';
     var bgLabel = item.background ? '背景・影響' : 'ことば';
@@ -314,6 +312,11 @@
       url ? externalLink(url, '元記事を読む →', 'read') : null
     ]);
     detail.appendChild(linkLine);
+    if (!item.summary) {
+      detail.appendChild(
+        el('p', { text: '配信元から概要が提供されていないため、タイトルのみを表示しています。' })
+      );
+    }
 
     var alsoLinks = [];
     (Array.isArray(item.others) ? item.others : []).forEach(function (o) {
