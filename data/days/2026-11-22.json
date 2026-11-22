@@ -1,11 +1,11 @@
 {
   "date": "2026-11-22",
-  "generated_at": "2026-11-22T09:51:45+09:00",
+  "generated_at": "2026-11-22T10:08:23+09:00",
   "items": [
     {
       "id": "127ee834d304",
       "title": "バーレーンの民間産業施設で火災、負傷者なし イランが攻撃",
-      "summary": "",
+      "summary": "バーレーン内務省は21日、民間の産業施設がイランの攻撃を受けたと発表した。火災が発生したものの、負傷者はいないという。詳しい場所は明らかにしていない。",
       "category": "world",
       "source": "毎日新聞",
       "published": "2026-11-22T08:55:29+09:00",
@@ -16,12 +16,14 @@
           "url": "https://www.jiji.com/jc/article?k=2026112200125&g=int&m=rss"
         }
       ],
-      "importance": 2
+      "importance": 2,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/22/20261122k0000m030019000p/0c10.jpg?1"
     },
     {
       "id": "83a43175bd8f",
       "title": "日本との絆、未来へ引き継ぐ旅 愛子さま、シンガポール訪問終える",
-      "summary": "",
+      "summary": "天皇、皇后両陛下の長女愛子さまは１７～２１日のシンガポール公式訪問を終えられた。滞在中は笑顔を絶やさず、日本庭園では上皇ご夫妻が５６年前に植え、友好の象徴となったソテツを視察。",
       "category": "domestic",
       "source": "時事通信",
       "published": "2026-11-22T06:57:00+09:00",
@@ -32,7 +34,9 @@
           "url": "http://www.asahi.com/articles/ASVCK0FSPVCKUQIP008M.html?ref=rss"
         }
       ],
-      "importance": 2
+      "importance": 2,
+      "checked": true,
+      "image": "https://www.jiji.com/news2/kiji_photos/202611/20261121at21S_ogp.jpg"
     },
     {
       "id": "550a0fdcdd45",
@@ -55,83 +59,122 @@
     {
       "id": "c45abd0b81e5",
       "title": "年末年始の選挙を避けるため自主解散案 福岡・福津市議会で採決へ",
-      "summary": "",
+      "summary": "福岡県福津市議会（定数18）の市議5人は20日、年末年始の時期に重なってきた市議選の日程を前倒しするため、自主解散して任期を調整する決議案を12月定例会に提案した。12月8日の最終本会議で可決されれ…",
       "category": "politics",
       "source": "朝日新聞",
       "published": "2026-11-21T11:00:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCN454YVCNTIPE01RM.html?ref=rss",
-      "glossary": "解散：衆議院の議員全員の任期を途中で終わらせて、選挙をやり直すこと。",
-      "importance": 2
+      "importance": 2,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261120004822_comm.jpg"
+    },
+    {
+      "id": "107636046b6c",
+      "title": "経済プラス:ターゲットは「キダルト」？ リカちゃん人形、米国に再進出",
+      "summary": "タカラトミーの看板商品「リカちゃん」人形が、海を渡り北米市場に上陸している。ターゲットは、子供時代に親しんだおもちゃの収集を成人になっても楽しむ大人たち。",
+      "category": "world",
+      "source": "毎日新聞",
+      "published": "2026-11-22T10:00:17+09:00",
+      "url": "https://mainichi.jp/articles/20261120/k00/00m/020/201000c",
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/20/20261120k0000m020212000p/0c10.jpg?1"
+    },
+    {
+      "id": "0f0b23e35fce",
+      "title": "プチッと一粒、ヒントはサプリ 「ヨーグレット」のときめき継承",
+      "summary": "「ヨーグレット」は、タブレットの甘酸っぱいお菓子。40年以上愛されるあの味は変わらないけれど、最近はグミやあめなど、形の違う仲間を見かけるようになった。そういえば、数年前に親会社が変わったと聞いたなあ……。",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T10:00:15+09:00",
+      "url": "https://mainichi.jp/articles/20261117/k00/00m/100/162000c",
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/17/20261117dde012040048000p/0c10.jpg?3"
     },
     {
       "id": "aab56a6c455b",
       "title": "小児・AYA世代がん対象の臨床研究 京大病院が受け入れ開始",
-      "summary": "",
+      "summary": "小児や「AYA」と呼ばれる若年世代のがん患者（0～29歳）を対象に、海外で承認されながら国内では未承認や適応外の治療薬を投与する臨床研究の実施機関に京都大医学部付属病院（京都市左京区）が近畿で初めて加わり、患者の受け入れを始めた。",
       "category": "science",
       "source": "毎日新聞",
       "published": "2026-11-22T09:15:11+09:00",
       "url": "https://mainichi.jp/articles/20261120/k00/00m/310/097000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2020/07/06/20200706k0000m040090000p/0c10.jpg?7"
     },
     {
       "id": "5c9b65f413b6",
       "title": "＃ビジュ:「チーム1のブス」と投稿され…… 化粧に励む男子大学生の葛藤",
-      "summary": "",
+      "summary": "美しくなりたいのは女性だけじゃない――。スキンケアや化粧に励む「美容男子」は今や珍しい存在ではない。男性の美容市場は活況を呈し、若い男性を中心に身だしなみへの意識は高まっている。",
       "category": "domestic",
       "source": "毎日新聞",
       "published": "2026-11-22T09:00:39+09:00",
       "url": "https://mainichi.jp/articles/20261121/k00/00m/040/034000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/21/20261121mpj00m040031000p/0c10.jpg?1"
     },
     {
       "id": "ac6db39400dd",
       "title": "北海道から宝塚へ 「ヅカ推し」の妻と支える夫、円満のヒント",
-      "summary": "",
+      "summary": "アイドル、アスリート、アニメ――。さまざまな「推し活」があり、生きる糧とする人も多い。北海道に住んでいた夫婦は「宝塚歌劇」の推し活がきっかけで、おひざ元の兵庫県宝塚市に移住し、民泊を始めた。",
       "category": "domestic",
       "source": "毎日新聞",
       "published": "2026-11-22T09:00:31+09:00",
       "url": "https://mainichi.jp/articles/20261120/k00/00m/040/078000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/20/20261120k0000m040323000p/0c10.jpg?1"
     },
     {
       "id": "ebe5beb78ca9",
       "title": "＃ビジュ:メンズメーク市場活況も「どう思われるか」 迷える「美容男子」",
-      "summary": "",
+      "summary": "若い世代を中心に化粧をする男性が増えている。だが、まだ市民権を十分に得たとは言えず、男性のメークが「当たり前」ではない中高年の世代にどう思われるかを気にする人も少なくない。",
       "category": "domestic",
       "source": "毎日新聞",
       "published": "2026-11-22T09:00:27+09:00",
       "url": "https://mainichi.jp/articles/20261121/k00/00m/040/040000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/21/20261121mpj00m040032000p/0c10.jpg?1"
     },
     {
       "id": "30d0dddebd74",
       "title": "週末パズル:誤字熟語 四つの5文字の熟語を作って",
-      "summary": "",
+      "summary": "空いている三つのマスにリストの漢字を入れて左から読み、四つの5文字の熟語を作ってください。ただし、すでに入っている三つの漢字のうち一つは使いませんので、黒く塗って隠してください。（出題/今井洋輔）",
       "category": "domestic",
       "source": "毎日新聞",
       "published": "2026-11-22T09:00:15+09:00",
       "url": "https://mainichi.jp/articles/20261119/k00/00m/100/265000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/19/20261119k0000m100238000p/0c10.jpg?1"
     },
     {
       "id": "3a8fec3316b8",
       "title": "習氏、14カ国と首脳会談、台湾問題で布石 日本など4カ国非開催",
-      "summary": "",
+      "summary": "中国の習近平（シーチンピン）国家主席は、アジア太平洋経済協力会議首脳会議が開催された深圳で活発な首脳外交を展開した。20日までの4日間で14カ国の首脳と個別に会談。日本やフィリピンとは開…",
       "category": "world",
       "source": "朝日新聞",
       "published": "2026-11-22T09:00:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCP3PQFVCPUHBI00LM.html?ref=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261121003448_comm.jpg"
     },
     {
       "id": "30e5a8f8f2c0",
       "title": "糸井嘉男さんの父も感慨 「僕の運命を変えた球場」で野球教室",
-      "summary": "",
+      "summary": "京都府与謝野町出身で元プロ野球選手の糸井嘉男さん（45）を招いた野球教室が福知山市和久市町の福知山SECカーボンスタジアムで7日に開かれた。市内の学童野球チームの約120人が参加し、走塁やバッティングのコツを教わった。",
       "category": "domestic",
       "source": "毎日新聞",
       "published": "2026-11-22T08:45:10+09:00",
       "url": "https://mainichi.jp/articles/20261120/k00/00m/310/051000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/20/20261120ddlk26050317000p/0c10.jpg?3"
     },
     {
       "id": "7affad66a74b",
@@ -147,167 +190,177 @@
           "url": "https://www.itmedia.co.jp/news/article/2611/22/2000003388/"
         }
       ],
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://www.itmedia.co.jp/news/article/ogp/2611/22/2000003388/10012748/2048"
     },
     {
       "id": "773a710a32af",
       "title": "プロ格闘家から転身の登山家 エベレスト登頂で得た自己肯定感",
-      "summary": "",
+      "summary": "山梨県甲斐市在住の登山家、増田良太さん（43）は今年5月に世界最高峰エベレスト（8848メートル）の登頂に成功した。",
       "category": "domestic",
       "source": "毎日新聞",
       "published": "2026-11-22T08:15:12+09:00",
       "url": "https://mainichi.jp/articles/20261119/k00/00m/310/155000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/20/20261120k0000m310055000p/0c10.jpg?1"
     },
     {
       "id": "c0cc5e72ebc2",
       "title": "「フジテレビ側の意向で」 倉本聰さん明かす「北の国から」秘話",
-      "summary": "",
+      "summary": "北海道富良野市の知名度を全国区にしたテレビドラマ「北の国から」など、数々の話題作を手掛けてきた同市在住の脚本家、演出家の倉本聰さんが9月18日、91歳で亡くなった。",
       "category": "domestic",
       "source": "毎日新聞",
       "published": "2026-11-22T08:00:16+09:00",
       "url": "https://mainichi.jp/articles/20261119/k00/00m/200/010000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/19/20261119k0000m200011000p/0c10.jpg?1"
     },
     {
       "id": "450c55c8882b",
       "title": "勢いに乗る「洋流」勝敗の鍵に 台湾統一選で注目集める穏やかさ",
-      "summary": "",
+      "summary": "28日に投開票される台湾の統一地方選では、台北市長選で与党・民進党の新人、沈伯洋（しんはくよう）候補（44）がどこまで票を伸ばすかが全体の勝敗を分ける鍵を握りそうだ。",
       "category": "world",
       "source": "毎日新聞",
       "published": "2026-11-22T08:00:16+09:00",
       "url": "https://mainichi.jp/articles/20261121/k00/00m/030/212000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://cdn.mainichi.jp/vol1/2026/11/21/20261121k0000m030214000p/0c10.jpg?1"
     },
     {
       "id": "fff4686ebd51",
       "title": "「西高東低」の高齢者医療費、なぜ地域差1.5倍？ 保険料にも違い",
-      "summary": "",
+      "summary": "高齢者の1人あたり医療費を都道府県別にみると、西日本が高くて東日本が低い。そんな「西高東低」の傾向があります。なぜ地域差が生まれるのか、負担する保険料はどう違うのかを考えます。",
       "category": "science",
       "source": "朝日新聞",
       "published": "2026-11-22T08:00:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCL2TB0VCLULFA02LM.html?ref=rss",
-      "importance": 1
-    },
-    {
-      "id": "b2269fba5992",
-      "title": "廃校をスポーツ合宿施設に 「銚子を元気に」元ラガーマンの挑戦",
-      "summary": "",
-      "category": "domestic",
-      "source": "毎日新聞",
-      "published": "2026-11-22T07:45:10+09:00",
-      "url": "https://mainichi.jp/articles/20261119/k00/00m/310/159000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261118003535_comm.jpg"
     },
     {
       "id": "c8eea8cfc53d",
       "title": "ＡＩ有事、初動の数時間が鍵 日本の知見、多国間協力に―専門家",
-      "summary": "",
+      "summary": "人工知能（ＡＩ）政策・国際ルールづくりの先駆者の一人で、国際非営利団体「ＡＩセーフティ・コネクト」のニコラ・ミアイユ共同創業者兼共同最高経営責任者（ＣＥＯ）が時事通信のインタビューに応じた。",
       "category": "domestic",
       "source": "時事通信",
       "published": "2026-11-22T07:44:00+09:00",
       "url": "https://www.jiji.com/jc/article?k=2026112100351&g=int&m=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://www.jiji.com/news2/kiji_photos/202611/20261121at34S_o.jpg"
     },
     {
       "id": "6a383e10ccf5",
       "title": "左派政権存続か、右派返り咲きか スペイン総選挙まで１週間",
-      "summary": "",
+      "summary": "スペイン総選挙は２９日の投票まで１週間。社会労働党を率いるサンチェス首相（５４）は、欧州連合（ＥＵ）加盟国で数少ない左派政権の存続を目指し、懸命の選挙戦を展開する。",
       "category": "politics",
       "source": "時事通信",
       "published": "2026-11-22T07:43:00+09:00",
       "url": "https://www.jiji.com/jc/article?k=2026112100348&g=int&m=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://www.jiji.com/news2/kiji_photos/202611/20261121at27S_o.jpg"
     },
     {
       "id": "3065d49c9597",
       "title": "台湾地方選、与党に勢い 野党地盤の台北で激戦―投開票まで１週間",
-      "summary": "",
+      "summary": "台湾で次期総統選の前哨戦と位置付けられる統一地方選は、２８日の投開票まで１週間を切った。与党・民進党は頼清徳政権の堅調な支持率を背景に、２２県市長選で首長を現在の五つから上積みする勢い。",
       "category": "politics",
       "source": "時事通信",
       "published": "2026-11-22T07:42:00+09:00",
       "url": "https://www.jiji.com/jc/article?k=2026112100337&g=int&m=rss",
-      "importance": 1
-    },
-    {
-      "id": "d4ac426eca06",
-      "title": "静の永瀬九段vs動の佐々木八段 意地の張り合い A級順位戦観戦記",
-      "summary": "",
-      "category": "domestic",
-      "source": "毎日新聞",
-      "published": "2026-11-22T07:30:15+09:00",
-      "url": "https://mainichi.jp/articles/20261122/k00/00m/200/006000c",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://www.jiji.com/news2/kiji_photos/202611/20261121at28S_o.jpg"
     },
     {
       "id": "b05301150ed4",
       "title": "入校初日に胸ぐらつかむ 東京消防庁、助教を処分「メンタル強く…」",
-      "summary": "",
+      "summary": "消防学校に入校したばかりの男性の胸ぐらをつかむなどのパワーハラスメントを繰り返したとして、東京消防庁は20日、学生を指導する助教だった消防学校教養課の男性消防士長（38）を停職2カ月の懲戒処分とし、…",
       "category": "domestic",
       "source": "朝日新聞",
       "published": "2026-11-22T07:30:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCN3K7QVCNUTIL01FM.html?ref=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261120004179_comm.jpg"
     },
     {
       "id": "2577731899cf",
       "title": "高速PA・SA、3分の1でごみ箱撤去へ 不法投棄やまず、注射器も",
-      "summary": "",
+      "summary": "高速道路各社は、全国で管理する高速道路のパーキングエリア（PA）やサービスエリア（SA）などの3分の1に当たる280カ所で、来年1月からごみ箱を撤去すると発表した。家庭ごみの持ち込みや不法投棄が後を…",
       "category": "domestic",
       "source": "朝日新聞",
       "published": "2026-11-22T07:00:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCN2Q9ZVCNOIPE00BM.html?ref=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261120003068_comm.jpg"
     },
     {
       "id": "a01515102e7a",
       "title": "首里城の復元、科学に裏打ちされた和の匠の技術 Newtonで読む",
-      "summary": "",
+      "summary": "沖縄県にある首里城正殿が、2019年に発生した火災により焼損してから約7年。これまで少しずつ復元作業が進められ、11月22日に完成式、そして23日から一般公開が行われます。首里城は中国や日本の文化…",
       "category": "domestic",
       "source": "朝日新聞",
       "published": "2026-11-22T07:00:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCJ2TF2VCJBNEH003M.html?ref=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261116003412_comm.jpg"
     },
     {
       "id": "1e6c6d6281f0",
       "title": "ＡＩ危機管理、米中から世界へ 日本の役割も焦点",
-      "summary": "",
+      "summary": "人工知能（ＡＩ）の暴走や悪用の脅威に、米中二大国だけで備えられるか。トランプ米大統領と中国の習近平国家主席は１９日に中国・深センで会談し、ＡＩに関する安全策を協議。",
       "category": "domestic",
       "source": "時事通信",
       "published": "2026-11-22T06:58:00+09:00",
       "url": "https://www.jiji.com/jc/article?k=2026112100363&g=int&m=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://www.jiji.com/img/jijicom_og_image.png"
     },
     {
       "id": "43e0e195a574",
       "title": "次期防衛費、ローンが圧迫 「６０兆円無責任」与党猛反発",
-      "summary": "",
+      "summary": "安全保障関連３文書の年内改定に向け、政府が６０兆円規模を軸に２０２７～３１年度の防衛費を調整していることに、与党が猛反発している。",
       "category": "politics",
       "source": "時事通信",
       "published": "2026-11-22T06:57:00+09:00",
       "url": "https://www.jiji.com/jc/article?k=2026112100340&g=pol&m=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://www.jiji.com/news2/kiji_photos/202611/20261121at38S_ogp.jpg"
     },
     {
       "id": "f7efe0100bff",
       "title": "沖縄の象徴、「もう失わないで」 首里城正殿、２２日完成式",
-      "summary": "",
+      "summary": "２０１９年の火災で焼失した首里城正殿の復元が終わり、２２日に政府主催の完成式が開かれる。沖縄が喪失感に包まれた夜から７年。",
       "category": "domestic",
       "source": "時事通信",
       "published": "2026-11-22T06:57:00+09:00",
       "url": "https://www.jiji.com/jc/article?k=2026112100335&g=soc&m=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://www.jiji.com/news2/kiji_photos/202611/20261121at33S_o.jpg"
     },
     {
       "id": "b02853036c90",
       "title": "関文科相の進退焦点に 与党に辞任論、野党問責判断へ",
-      "summary": "",
+      "summary": "会費９万円の政治資金パーティーを開催した関芳弘文部科学相の進退が、週明けの焦点となりそうだ。野党が問責決議案提出を検討する中で、関氏が説明していた以外にも政府職員が出席していたケースがあったことが発覚。",
       "category": "politics",
       "source": "時事通信",
       "published": "2026-11-22T06:56:00+09:00",
       "url": "https://www.jiji.com/jc/article?k=2026112100387&g=pol&m=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://www.jiji.com/news2/kiji_photos/202611/20261121at50S_ogp.jpg"
     },
     {
       "id": "7f53452dff19",
@@ -317,38 +370,46 @@
       "source": "朝日新聞",
       "published": "2026-11-22T06:00:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCN1SDJVCNUTFL001M.html?ref=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261120002291_comm.jpg"
     },
     {
       "id": "212335b8bb3f",
       "title": "老舗洋菓子店で盲導犬とふれあい 親子30人、テス先生から学ぶ",
-      "summary": "",
+      "summary": "浮輪形のクッキーで知られる洋菓子製造販売「泉屋東京店」の麴町（こうじまち）本店（東京都千代田区麴町3丁目）で21日、盲導犬とふれあうイベントがあった。親子約30人が参加し、盲導犬をなでたり、盲導犬に…",
       "category": "domestic",
       "source": "朝日新聞",
       "published": "2026-11-22T06:00:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCP2DNCVCPOXIE00NM.html?ref=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261121002499_comm.jpg"
     },
     {
       "id": "dbd8a5b65914",
       "title": "「オープンAIの文化壊れてた」 暴走止められず、辞めた社員の告白",
-      "summary": "",
+      "summary": "人間の意図に反したAI（人工知能）の「暴走」事案が相次ぐなか、米国のオープンAIの社員が10月、「企業文化が壊れている」とする寄稿を米メディアに残して退社した。社員の名前はデビッド・ロビンソン。安…",
       "category": "tech",
       "source": "朝日新聞",
       "published": "2026-11-22T06:00:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCP2J36VCPUHBI020M.html?ref=rss",
       "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261121002601_comm.jpg"
     },
     {
       "id": "28470f53be51",
       "title": "歩道に本物そっくりのピアノ、なぜ？ 「音楽の街」が目指したもの",
-      "summary": "",
+      "summary": "そのピアノは、突如として歩道に現れた。黒い本体に、白と黒の鍵盤。アップライトピアノが野ざらしにされている。",
       "category": "domestic",
       "source": "朝日新聞",
       "published": "2026-11-22T06:00:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCM23RZVCMPTIL009M.html?ref=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261119002771_comm.jpg"
     },
     {
       "id": "fbc04f67bcf5",
@@ -359,27 +420,33 @@
       "published": "2026-11-22T06:00:00+09:00",
       "url": "https://kn.itmedia.co.jp/kn/article/2611/22/2000003384/",
       "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://kn.itmedia.co.jp/kn/article/ogp/2611/22/2000003384/10012726/2048"
     },
     {
       "id": "614d97cba6fa",
       "title": "住宅から現金2500万円と金塊20キロ盗まれる 警察が捜査 兵庫",
-      "summary": "",
+      "summary": "21日午前2時35分ごろ、兵庫県西宮市甲子園四番町の住宅で、警備会社から「センサーが反応した」と110番通報があった。警察官が駆けつけると、ドアが壊されており、現金約2500万円と金塊約20キロなど…",
       "category": "domestic",
       "source": "朝日新聞",
       "published": "2026-11-22T00:16:51+09:00",
       "url": "http://www.asahi.com/articles/ASVCP51T9VCPPLZB00BM.html?ref=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261122000027_comm.jpg"
     },
     {
       "id": "782b3de17b27",
       "title": "玄関先に嬰児の遺体、置いた人物を死体遺棄容疑で捜査 東京・多摩",
-      "summary": "",
+      "summary": "21日午前8時10分ごろ、東京都多摩市の住宅で、「（玄関先に）動物の死骸があるようだ」と住人の男性から110番通報があった。警視庁捜査1課によると、一戸建て住宅の玄関先に置かれていたのは、嬰児（え…",
       "category": "society",
       "source": "朝日新聞",
       "published": "2026-11-21T20:15:00+09:00",
       "url": "http://www.asahi.com/articles/ASVCP3JQ7VCPUTIL00FM.html?ref=rss",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://imgopt.asahi.com/ogp/AS20261121003358_comm.jpg"
     },
     {
       "id": "cc2a56056aff",
@@ -390,7 +457,9 @@
       "published": "2026-11-21T15:38:29+09:00",
       "url": "https://www.itmedia.co.jp/news/article/2611/21/2000003387/",
       "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://www.itmedia.co.jp/news/article/ogp/2611/21/2000003387/10012744/2048"
     },
     {
       "id": "9c5b1806d47e",
@@ -401,7 +470,9 @@
       "published": "2026-11-21T14:22:15+09:00",
       "url": "https://kn.itmedia.co.jp/kn/article/2611/21/2000003385/",
       "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://kn.itmedia.co.jp/kn/article/ogp/2611/21/2000003385/10012728/2048"
     },
     {
       "id": "8442068e4911",
@@ -446,7 +517,9 @@
       "published": "2026-11-21T09:00:00+09:00",
       "url": "https://www.itmedia.co.jp/enterprise/articles/2611/21/news003.html",
       "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
-      "importance": 1
+      "importance": 1,
+      "checked": true,
+      "image": "https://image.itmedia.co.jp/enterprise/articles/2611/21/cover_news003.jpg"
     }
   ]
 }
