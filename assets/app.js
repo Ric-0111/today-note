@@ -28,7 +28,7 @@
 
   var DEFAULT_CONFIG = {
     siteName: 'TODAY NOTE',
-    tagline: '毎朝5分で、世の中の大切な動きが分かるニュースサイト',
+    tagline: '',
     dataBase: 'data/',
     searchDays: 120,
     recentCategoryDays: 7
@@ -36,6 +36,7 @@
 
   var WEEK = ['日', '月', '火', '水', '木', '金', '土'];
   var DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+  var PREF_KEY = 'today-note-prefs';
 
   var state = {
     config: DEFAULT_CONFIG,
@@ -69,6 +70,38 @@
     return node;
   }
 
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+
+  function svgIcon(parts) {
+    var svg = document.createElementNS(SVG_NS, 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    parts.forEach(function (p) {
+      var node = document.createElementNS(SVG_NS, p.tag);
+      Object.keys(p.attrs).forEach(function (k) {
+        node.setAttribute(k, p.attrs[k]);
+      });
+      svg.appendChild(node);
+    });
+    return svg;
+  }
+
+  var ICON_SEARCH = [
+    { tag: 'circle', attrs: { cx: '11', cy: '11', r: '7' } },
+    { tag: 'line', attrs: { x1: '21', y1: '21', x2: '16.65', y2: '16.65' } }
+  ];
+
+  var ICON_GEAR = [
+    { tag: 'circle', attrs: { cx: '12', cy: '12', r: '3' } },
+    {
+      tag: 'path',
+      attrs: {
+        d:
+          'M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z'
+      }
+    }
+  ];
+
   // リンク先は http / https のものだけ許可する
   function safeUrl(u) {
     if (typeof u !== 'string') return '';
@@ -94,6 +127,34 @@
 
   function getParam(name) {
     return new URLSearchParams(window.location.search).get(name) || '';
+  }
+
+  // ------------------------------------------------------------
+  // 表示の設定（文字の大きさ・画像の表示）。この端末のブラウザにだけ保存します
+  // ------------------------------------------------------------
+
+  function loadPrefs() {
+    try {
+      var p = JSON.parse(window.localStorage.getItem(PREF_KEY) || '{}');
+      return p && typeof p === 'object' ? p : {};
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function savePrefs(p) {
+    try {
+      window.localStorage.setItem(PREF_KEY, JSON.stringify(p));
+    } catch (e) {
+      /* 保存できなくても、表示は問題なく使えます */
+    }
+  }
+
+  function applyPrefs(p) {
+    var size = p.size === 's' || p.size === 'l' ? p.size : 'm';
+    var images = p.images === 'off' ? 'off' : 'on';
+    document.documentElement.setAttribute('data-size', size);
+    document.documentElement.setAttribute('data-images', images);
   }
 
   // ------------------------------------------------------------
@@ -143,10 +204,14 @@
     var d = new Date(iso);
     if (isNaN(d.getTime())) return '';
     var p = jstParts(d);
-    return (
-      (withYear ? p.year + '年' : '') +
-      +p.month + '月' + +p.day + '日 ' + p.hour + ':' + p.minute
-    );
+    return (withYear ? p.year + '年' : '') + +p.month + '月' + +p.day + '日 ' + p.hour + ':' + p.minute;
+  }
+
+  function formatShort(iso, withDate) {
+    var d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    var p = jstParts(d);
+    return (withDate ? +p.month + '/' + +p.day + ' ' : '') + p.hour + ':' + p.minute;
   }
 
   // ------------------------------------------------------------
@@ -167,6 +232,31 @@
     });
   }
 
+  // 画像の枠。画像がない・読み込めないときは、カテゴリ名の代わり画像になります
+  function renderThumb(item, cat) {
+    var thumb = el('div', {
+      class: 'thumb' + (cat ? ' cat-' + cat.key : ''),
+      'aria-hidden': 'true'
+    });
+    thumb.appendChild(el('span', { text: cat ? cat.short : 'NEWS' }));
+
+    var src = safeUrl(item.image);
+    if (src) {
+      var img = el('img', {
+        src: src,
+        alt: '',
+        loading: 'lazy',
+        decoding: 'async',
+        referrerpolicy: 'no-referrer'
+      });
+      img.addEventListener('error', function () {
+        if (img.parentNode) img.parentNode.removeChild(img);
+      });
+      thumb.appendChild(img);
+    }
+    return thumb;
+  }
+
   function renderItem(item, opts) {
     opts = opts || {};
     var cat = CAT_BY_KEY[item.category];
@@ -174,67 +264,71 @@
     var url = safeUrl(item.url);
     var title = item.title || '(タイトルなし)';
 
-    // 1行目：重要度・カテゴリ
-    var meta = el('p', { class: 'item-meta' }, [
-      opts.number
-        ? el('span', { class: 'lead-no', text: (opts.number < 10 ? '0' : '') + opts.number })
-        : null,
+    // 1行目：カテゴリ・情報元・時刻 と 重要度
+    var metaText = [
+      cat ? cat.label : '',
+      item.source || '',
+      item.published ? formatShort(item.published, opts.withYear) : ''
+    ]
+      .filter(Boolean)
+      .join('・');
+
+    var row = el('div', { class: 'row' }, [
+      el('p', { class: 'meta', text: metaText }),
       el('span', {
         class: 'stars imp-' + imp,
+        role: 'img',
         'aria-label': '重要度 ' + imp + '（3段階）',
         text: '★★★'.slice(0, imp)
-      }),
-      cat ? el('span', { class: 'cat', text: cat.label }) : null
+      })
     ]);
 
-    // タイトル
-    var heading = el('h3', { class: 'item-title' }, [
-      url ? externalLink(url, title) : title
-    ]);
+    var titleBtn = el('button', { type: 'button', class: 'title-btn', 'aria-expanded': 'false', text: title });
+    var heading = el('h3', { class: 'title' }, [titleBtn]);
 
     // 要約（RSSから取れなかったときは、その旨を正直に表示する）
     var summary = el('p', {
-      class: 'item-summary',
+      class: 'summary',
       text: item.summary || '概要は取得できませんでした。詳しくは元記事をご覧ください。'
     });
 
-    // 背景・影響（あるときだけ）
     var background = item.background
-      ? el('div', { class: 'background' }, [
-          el('span', { class: 'background-label', text: '背景・影響' }),
-          el('p', { text: item.background })
-        ])
+      ? el('p', { class: 'bg' }, [el('span', { class: 'bg-label', text: '背景・影響' }), item.background])
       : null;
 
-    // 情報元・日時・リンク
-    var foot = el('p', { class: 'item-foot' }, [
-      item.source ? el('span', { class: 'source', text: item.source }) : null,
-      item.published
-        ? el('span', { class: 'time', text: formatDateTime(item.published, opts.withYear) })
-        : null,
+    // タップして開いたときに出る部分（元記事リンク・同じ話題の他の情報元）
+    var detail = el('div', { class: 'detail' });
+    var linkLine = el('p', {}, [
+      item.source ? item.source + '　' : '',
+      item.published ? formatDateTime(item.published, true) + '　' : '',
       url ? externalLink(url, '元記事を読む →', 'read') : null
     ]);
+    detail.appendChild(linkLine);
 
-    // 同じ話題を報じた他の情報元
-    var others = Array.isArray(item.others) ? item.others : [];
     var alsoLinks = [];
-    others.forEach(function (o) {
-      var ou = safeUrl(o && o.url);
+    (Array.isArray(item.others) ? item.others : []).forEach(function (o) {
       if (!o || !o.source) return;
+      var ou = safeUrl(o.url);
       if (alsoLinks.length) alsoLinks.push('、');
       alsoLinks.push(ou ? externalLink(ou, o.source) : o.source);
     });
     if (alsoLinks.length) {
-      foot.appendChild(el('span', { class: 'also' }, ['同じ話題：'].concat(alsoLinks)));
+      detail.appendChild(el('p', { class: 'also' }, ['同じ話題：'].concat(alsoLinks)));
     }
 
-    return el('article', { class: 'item' + (opts.lead ? ' lead' : '') }, [
-      meta,
-      heading,
-      summary,
-      background,
-      foot
-    ]);
+    var body = el('div', { class: 'body' }, [row, heading, summary, background, detail]);
+    var card = el('article', { class: 'card' }, [renderThumb(item, cat), body]);
+
+    // カードをタップすると、詳しい表示に切り替わる（リンクをタップしたときは切り替えない）
+    card.addEventListener('click', function (e) {
+      if (e.target.closest && e.target.closest('a')) return;
+      var sel = window.getSelection && window.getSelection();
+      if (sel && String(sel).length > 0) return;
+      var open = card.classList.toggle('open');
+      titleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    return card;
   }
 
   function renderItems(items, opts) {
@@ -249,11 +343,87 @@
   // ヘッダー・フッター
   // ------------------------------------------------------------
 
+  function settingRow(label, key, options) {
+    var prefs = loadPrefs();
+    var seg = el('div', { class: 'seg', role: 'group', 'aria-label': label });
+
+    function current() {
+      return loadPrefs()[key] || options[0].value;
+    }
+
+    function refresh() {
+      var cur = current();
+      Array.prototype.forEach.call(seg.children, function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-value') === cur ? 'true' : 'false');
+      });
+    }
+
+    options.forEach(function (o) {
+      var b = el('button', { type: 'button', 'data-value': o.value, text: o.label });
+      b.addEventListener('click', function () {
+        var p = loadPrefs();
+        p[key] = o.value;
+        savePrefs(p);
+        applyPrefs(p);
+        refresh();
+      });
+      seg.appendChild(b);
+    });
+
+    void prefs;
+    refresh();
+    return el('div', { class: 'setting-row' }, [el('span', { class: 'setting-label', text: label }), seg]);
+  }
+
   function renderHeader(activeKey) {
     var cfg = state.config;
     var t = dateObj(todayJST());
 
-    var nav = el('nav', { class: 'nav', 'aria-label': 'メニュー' });
+    var searchLink = el(
+      'a',
+      {
+        class: 'icon-btn',
+        href: 'search.html',
+        'aria-label': '検索',
+        title: '検索',
+        'aria-current': activeKey === 'search' ? 'page' : null
+      },
+      [svgIcon(ICON_SEARCH)]
+    );
+
+    var settingsBtn = el(
+      'button',
+      {
+        class: 'icon-btn',
+        type: 'button',
+        'aria-label': '表示の設定',
+        title: '表示の設定',
+        'aria-expanded': 'false',
+        'aria-controls': 'settings'
+      },
+      [svgIcon(ICON_GEAR)]
+    );
+
+    var settings = el('div', { class: 'settings', id: 'settings', hidden: 'hidden' }, [
+      settingRow('文字の大きさ', 'size', [
+        { value: 'm', label: '標準' },
+        { value: 's', label: '小さめ' },
+        { value: 'l', label: '大きめ' }
+      ]),
+      settingRow('画像', 'images', [
+        { value: 'on', label: '表示する' },
+        { value: 'off', label: '表示しない' }
+      ])
+    ]);
+
+    settingsBtn.addEventListener('click', function () {
+      var open = settings.hasAttribute('hidden');
+      if (open) settings.removeAttribute('hidden');
+      else settings.setAttribute('hidden', 'hidden');
+      settingsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    var nav = el('nav', { class: 'nav', 'aria-label': 'カテゴリ' });
     function addLink(href, text, key) {
       nav.appendChild(
         el('a', { href: href, 'aria-current': activeKey === key ? 'page' : null, text: text })
@@ -264,18 +434,22 @@
       addLink('category.html?c=' + c.key, c.short, c.key);
     });
     addLink('archive.html', '過去', 'archive');
-    addLink('search.html', '検索', 'search');
 
     var header = $('#site-header');
     header.textContent = '';
-    header.appendChild(el('a', { class: 'brand', href: 'index.html', text: cfg.siteName }));
     header.appendChild(
-      el('p', { class: 'today' }, [
-        el('span', { class: 'today-main', text: t.m + '月' + t.d + '日' }),
-        el('span', { class: 'today-sub', text: t.y + '年・' + t.w + '曜日' })
+      el('div', { class: 'head-row' }, [
+        el('div', {}, [
+          el('a', { class: 'brand', href: 'index.html', text: cfg.siteName }),
+          el('p', { class: 'today' }, [
+            el('span', { class: 'today-main', text: t.m + '月' + t.d + '日' }),
+            el('span', { class: 'today-sub', text: t.y + '年・' + t.w + '曜日' })
+          ])
+        ]),
+        el('div', { class: 'icons' }, [searchLink, settingsBtn])
       ])
     );
-    header.appendChild(el('p', { class: 'tagline', text: cfg.tagline }));
+    header.appendChild(settings);
     header.appendChild(nav);
   }
 
@@ -291,8 +465,7 @@
     );
     footer.appendChild(
       el('p', {
-        text:
-          '正確な内容は、必ず元の記事でご確認ください。記事の著作権は、それぞれの情報元に帰属します。'
+        text: '正確な内容は、必ず元の記事でご確認ください。記事の著作権は、それぞれの情報元に帰属します。'
       })
     );
   }
@@ -330,6 +503,8 @@
         '自動更新が始まると、本物のニュースに置き換わります。'
     });
   }
+
+  var LOAD_ERROR = 'ニュースのデータを読み込めませんでした。しばらくしてから、もう一度開いてください。';
 
   // ------------------------------------------------------------
   // データの読み込み
@@ -421,11 +596,11 @@
 
         if (day.sample) nodes.push(sampleNotice());
 
-        // 更新日時
         var updatedText = '';
         if (day.generated_at) updatedText = '更新：' + formatDateTime(day.generated_at, true);
         if (day.date && day.date < todayJST()) {
-          updatedText += (updatedText ? '　' : '') + '※ 最新のニュースは ' + formatDateJa(day.date) + ' 分です';
+          updatedText +=
+            (updatedText ? '　' : '') + '※ 最新のニュースは ' + formatDateJa(day.date) + ' 分です';
         }
         if (updatedText) nodes.push(el('p', { class: 'updated', text: updatedText }));
 
@@ -450,13 +625,8 @@
 
         if (top.length) {
           nodes.push(el('h2', { class: 'section-title', text: '今日の重要ニュース' }));
-          var leadList = el('div', { class: 'lead-list' });
-          top.forEach(function (it, idx) {
-            leadList.appendChild(renderItem(it, { lead: true, number: idx + 1 }));
-          });
-          nodes.push(leadList);
+          nodes.push(renderItems(top));
         }
-
         if (rest.length) {
           nodes.push(el('h2', { class: 'section-title', text: '今日のニュース' }));
           nodes.push(renderItems(rest));
@@ -473,11 +643,10 @@
             ])
           );
         }
-
         setMain(nodes);
       })
       .catch(function () {
-        showError('ニュースのデータを読み込めませんでした。しばらくしてから、もう一度開いてください。');
+        showError(LOAD_ERROR);
       });
   }
 
@@ -508,10 +677,13 @@
           el('p', { class: 'page-lead', text: '最近' + days + '日分のニュースです。' })
         ];
 
-        var sample = dayList.some(function (d) {
-          return d.sample;
-        });
-        if (sample) nodes.push(sampleNotice());
+        if (
+          dayList.some(function (d) {
+            return d.sample;
+          })
+        ) {
+          nodes.push(sampleNotice());
+        }
 
         var count = 0;
         dayList.forEach(function (day) {
@@ -530,7 +702,7 @@
         setMain(nodes);
       })
       .catch(function () {
-        showError('ニュースのデータを読み込めませんでした。しばらくしてから、もう一度開いてください。');
+        showError(LOAD_ERROR);
       });
   }
 
@@ -559,7 +731,7 @@
         return archiveList(dates);
       })
       .catch(function () {
-        showError('ニュースのデータを読み込めませんでした。しばらくしてから、もう一度開いてください。');
+        showError(LOAD_ERROR);
       });
   }
 
@@ -611,11 +783,11 @@
       } else {
         if (day.sample) nodes.push(sampleNotice());
         var items = sortItems(day.items || []);
+        nodes.push(el('div', { class: 'spacer' }));
         if (!items.length) nodes.push(statusNode('この日のニュースはありません。'));
         else nodes.push(renderItems(items));
       }
 
-      // 前の日・次の日へのリンク
       var pos = -1;
       dates.forEach(function (d, i) {
         if (d.date === date) pos = i;
@@ -629,18 +801,16 @@
             : el('span'),
           newer
             ? el('a', { href: 'archive.html?d=' + newer.date, text: formatDateJa(newer.date) + ' →' })
-            : el('span'),
+            : el('span')
         ])
       );
-      nodes.push(
-        el('p', { class: 'more' }, [el('a', { href: 'archive.html', text: '日付の一覧に戻る' })])
-      );
+      nodes.push(el('p', { class: 'more' }, [el('a', { href: 'archive.html', text: '日付の一覧に戻る' })]));
       setMain(nodes);
     });
   }
 
   // ------------------------------------------------------------
-  // ページ：検索
+  // ページ：検索（キーワード＋カテゴリ）
   // ------------------------------------------------------------
 
   function normalizeText(s) {
@@ -662,13 +832,34 @@
       'aria-label': 'キーワード'
     });
     var form = el('form', { class: 'search-box', role: 'search' }, [input]);
+
+    // カテゴリの絞りこみ
+    var selectedCat = CAT_BY_KEY[getParam('c')] ? getParam('c') : '';
+    var chips = el('div', { class: 'chips', role: 'group', 'aria-label': 'カテゴリで絞りこむ' });
+    var chipDefs = [{ key: '', label: 'すべて' }].concat(CATEGORIES);
+    chipDefs.forEach(function (c) {
+      var b = el('button', {
+        type: 'button',
+        class: 'chip',
+        'data-key': c.key,
+        'aria-pressed': 'false',
+        text: c.key ? c.short : c.label
+      });
+      b.addEventListener('click', function () {
+        selectedCat = c.key;
+        run();
+      });
+      chips.appendChild(b);
+    });
+
     var info = el('p', { class: 'search-count' });
     var results = el('div', { class: 'items' });
 
     setMain([
       el('h1', { class: 'page-title', text: '検索' }),
-      el('p', { class: 'page-lead', text: '過去のニュースを、キーワードで探せます。' }),
+      el('p', { class: 'page-lead', text: '過去のニュースを、キーワードやカテゴリで探せます。' }),
       form,
+      chips,
       info,
       results
     ]);
@@ -683,24 +874,31 @@
       var q = normalizeText(input.value).trim();
       results.textContent = '';
 
-      // アドレス欄にも検索語を残す（あとで同じ検索を開けるように）
+      Array.prototype.forEach.call(chips.children, function (b) {
+        b.setAttribute('aria-pressed', b.getAttribute('data-key') === selectedCat ? 'true' : 'false');
+      });
+
+      // アドレス欄にも検索条件を残す（あとで同じ検索を開けるように）
       try {
         var url = new URL(window.location.href);
         if (q) url.searchParams.set('q', input.value.trim());
         else url.searchParams.delete('q');
+        if (selectedCat) url.searchParams.set('c', selectedCat);
+        else url.searchParams.delete('c');
         window.history.replaceState(null, '', url.toString());
       } catch (e) {
         /* 失敗しても検索自体は続けられます */
       }
 
       if (!ready) return;
-      if (!q) {
+      if (!q && !selectedCat) {
         info.textContent = all.length + '件のニュースから探せます。';
         return;
       }
 
       var words = q.split(/\s+/).filter(Boolean);
       var hits = all.filter(function (entry) {
+        if (selectedCat && entry.item.category !== selectedCat) return false;
         return words.every(function (w) {
           return entry.text.indexOf(w) !== -1;
         });
@@ -711,8 +909,11 @@
       });
 
       var MAX = 50;
+      var label = [];
+      if (selectedCat) label.push(CAT_BY_KEY[selectedCat].label);
+      if (q) label.push('「' + input.value.trim() + '」');
       info.textContent =
-        '「' + input.value.trim() + '」の検索結果：' + hits.length + '件' +
+        label.join(' ') + ' の結果：' + hits.length + '件' +
         (hits.length > MAX ? '（新しい順に' + MAX + '件を表示）' : '');
 
       if (!hits.length) {
@@ -732,6 +933,11 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       run();
+    });
+
+    // 読み込み中も、カテゴリのボタンの状態は先に反映しておく
+    Array.prototype.forEach.call(chips.children, function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-key') === selectedCat ? 'true' : 'false');
     });
 
     loadIndex()
@@ -760,7 +966,7 @@
       })
       .catch(function () {
         info.textContent = '';
-        showError('ニュースのデータを読み込めませんでした。しばらくしてから、もう一度開いてください。');
+        showError(LOAD_ERROR);
       });
   }
 
@@ -769,6 +975,7 @@
   // ------------------------------------------------------------
 
   function init() {
+    applyPrefs(loadPrefs());
     var page = document.body.getAttribute('data-page');
 
     loadConfig().then(function () {
