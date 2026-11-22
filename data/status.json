@@ -1,0 +1,117 @@
+{
+  "generated_at": "2026-11-22T09:51:45+09:00",
+  "feeds": [
+    {
+      "name": "NHK",
+      "url": "https://www3.nhk.or.jp/rss/news/cat0.xml",
+      "ok": true,
+      "items": 7,
+      "error": ""
+    },
+    {
+      "name": "NHK",
+      "url": "https://www3.nhk.or.jp/rss/news/cat1.xml",
+      "ok": true,
+      "items": 264,
+      "error": ""
+    },
+    {
+      "name": "NHK",
+      "url": "https://www3.nhk.or.jp/rss/news/cat3.xml",
+      "ok": true,
+      "items": 12,
+      "error": ""
+    },
+    {
+      "name": "NHK",
+      "url": "https://www3.nhk.or.jp/rss/news/cat4.xml",
+      "ok": true,
+      "items": 72,
+      "error": ""
+    },
+    {
+      "name": "NHK",
+      "url": "https://www3.nhk.or.jp/rss/news/cat5.xml",
+      "ok": true,
+      "items": 86,
+      "error": ""
+    },
+    {
+      "name": "NHK",
+      "url": "https://www3.nhk.or.jp/rss/news/cat6.xml",
+      "ok": true,
+      "items": 98,
+      "error": ""
+    },
+    {
+      "name": "朝日新聞",
+      "url": "https://www.asahi.com/rss/asahi/newsheadlines.rdf",
+      "ok": true,
+      "items": 40,
+      "error": ""
+    },
+    {
+      "name": "毎日新聞",
+      "url": "https://mainichi.jp/rss/etc/mainichi-flash.rss",
+      "ok": true,
+      "items": 20,
+      "error": ""
+    },
+    {
+      "name": "産経ニュース",
+      "url": "https://www.sankei.com/rss/news/flash.xml",
+      "ok": false,
+      "items": 0,
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "name": "時事通信",
+      "url": "https://www.jiji.com/rss/ranking.rdf",
+      "ok": true,
+      "items": 10,
+      "error": ""
+    },
+    {
+      "name": "BBC News Japan",
+      "url": "https://feeds.bbci.co.uk/japanese/rss.xml",
+      "ok": true,
+      "items": 38,
+      "error": ""
+    },
+    {
+      "name": "厚生労働省",
+      "url": "https://www.mhlw.go.jp/stf/news.rdf",
+      "ok": true,
+      "items": 130,
+      "error": ""
+    },
+    {
+      "name": "日本銀行",
+      "url": "https://www.boj.or.jp/rss/whatsnew.xml",
+      "ok": true,
+      "items": 72,
+      "error": ""
+    },
+    {
+      "name": "ITmedia NEWS",
+      "url": "https://rss.itmedia.co.jp/rss/2.0/news_bursts.xml",
+      "ok": true,
+      "items": 50,
+      "error": ""
+    },
+    {
+      "name": "ITmedia AI+",
+      "url": "https://rss.itmedia.co.jp/rss/2.0/aiplus.xml",
+      "ok": true,
+      "items": 20,
+      "error": ""
+    },
+    {
+      "name": "ITmedia ビジネス",
+      "url": "https://rss.itmedia.co.jp/rss/2.0/business_articles.xml",
+      "ok": false,
+      "items": 0,
+      "error": "ParseError: not well-formed (invalid token): line 9, column 7"
+    }
+  ]
+}

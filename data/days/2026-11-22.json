@@ -1,0 +1,452 @@
+{
+  "date": "2026-11-22",
+  "generated_at": "2026-11-22T09:51:45+09:00",
+  "items": [
+    {
+      "id": "127ee834d304",
+      "title": "バーレーンの民間産業施設で火災、負傷者なし イランが攻撃",
+      "summary": "",
+      "category": "world",
+      "source": "毎日新聞",
+      "published": "2026-11-22T08:55:29+09:00",
+      "url": "https://mainichi.jp/articles/20261122/k00/00m/030/020000c",
+      "others": [
+        {
+          "source": "時事通信",
+          "url": "https://www.jiji.com/jc/article?k=2026112200125&g=int&m=rss"
+        }
+      ],
+      "importance": 2
+    },
+    {
+      "id": "83a43175bd8f",
+      "title": "日本との絆、未来へ引き継ぐ旅 愛子さま、シンガポール訪問終える",
+      "summary": "",
+      "category": "domestic",
+      "source": "時事通信",
+      "published": "2026-11-22T06:57:00+09:00",
+      "url": "https://www.jiji.com/jc/article?k=2026112100342&g=soc&m=rss",
+      "others": [
+        {
+          "source": "朝日新聞",
+          "url": "http://www.asahi.com/articles/ASVCK0FSPVCKUQIP008M.html?ref=rss"
+        }
+      ],
+      "importance": 2
+    },
+    {
+      "id": "550a0fdcdd45",
+      "title": "AIが数学の未解決問題「リーマン予想」を証明か 米アンソロピックの数学者が主張",
+      "summary": "米アンソロピックに所属する数学者が20日、同社のAI「クロード」を使い、数学の難問「リーマン予想」を証明したと主張した。数学者レヴェント・アルポーゲ氏が、自分のウエブサイトで発表した。",
+      "category": "world",
+      "source": "BBC News Japan",
+      "published": "2026-11-21T12:52:23+09:00",
+      "url": "https://www.bbc.com/japanese/articles/cwlyl6ymz841o?at_medium=RSS&at_campaign=rss",
+      "image": "https://ichef.bbci.co.uk/ace/ws/240/cpsprodpb/78a0/live/a0688a80-e531-11f1-99b6-a35a62fa4264.jpg",
+      "others": [
+        {
+          "source": "朝日新聞",
+          "url": "http://www.asahi.com/articles/ASVCP10Z2VCPUHBI00GM.html?ref=rss"
+        }
+      ],
+      "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
+      "importance": 2
+    },
+    {
+      "id": "c45abd0b81e5",
+      "title": "年末年始の選挙を避けるため自主解散案 福岡・福津市議会で採決へ",
+      "summary": "",
+      "category": "politics",
+      "source": "朝日新聞",
+      "published": "2026-11-21T11:00:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCN454YVCNTIPE01RM.html?ref=rss",
+      "glossary": "解散：衆議院の議員全員の任期を途中で終わらせて、選挙をやり直すこと。",
+      "importance": 2
+    },
+    {
+      "id": "aab56a6c455b",
+      "title": "小児・AYA世代がん対象の臨床研究 京大病院が受け入れ開始",
+      "summary": "",
+      "category": "science",
+      "source": "毎日新聞",
+      "published": "2026-11-22T09:15:11+09:00",
+      "url": "https://mainichi.jp/articles/20261120/k00/00m/310/097000c",
+      "importance": 1
+    },
+    {
+      "id": "5c9b65f413b6",
+      "title": "＃ビジュ:「チーム1のブス」と投稿され…… 化粧に励む男子大学生の葛藤",
+      "summary": "",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T09:00:39+09:00",
+      "url": "https://mainichi.jp/articles/20261121/k00/00m/040/034000c",
+      "importance": 1
+    },
+    {
+      "id": "ac6db39400dd",
+      "title": "北海道から宝塚へ 「ヅカ推し」の妻と支える夫、円満のヒント",
+      "summary": "",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T09:00:31+09:00",
+      "url": "https://mainichi.jp/articles/20261120/k00/00m/040/078000c",
+      "importance": 1
+    },
+    {
+      "id": "ebe5beb78ca9",
+      "title": "＃ビジュ:メンズメーク市場活況も「どう思われるか」 迷える「美容男子」",
+      "summary": "",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T09:00:27+09:00",
+      "url": "https://mainichi.jp/articles/20261121/k00/00m/040/040000c",
+      "importance": 1
+    },
+    {
+      "id": "30d0dddebd74",
+      "title": "週末パズル:誤字熟語 四つの5文字の熟語を作って",
+      "summary": "",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T09:00:15+09:00",
+      "url": "https://mainichi.jp/articles/20261119/k00/00m/100/265000c",
+      "importance": 1
+    },
+    {
+      "id": "3a8fec3316b8",
+      "title": "習氏、14カ国と首脳会談、台湾問題で布石 日本など4カ国非開催",
+      "summary": "",
+      "category": "world",
+      "source": "朝日新聞",
+      "published": "2026-11-22T09:00:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCP3PQFVCPUHBI00LM.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "30e5a8f8f2c0",
+      "title": "糸井嘉男さんの父も感慨 「僕の運命を変えた球場」で野球教室",
+      "summary": "",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T08:45:10+09:00",
+      "url": "https://mainichi.jp/articles/20261120/k00/00m/310/051000c",
+      "importance": 1
+    },
+    {
+      "id": "7affad66a74b",
+      "title": "Anthropicの数学者、「Claude」と共同で「リーマン予想」を証明したと主張 Leanコミュニティが「正しい」と認定",
+      "summary": "Anthropicの数学者レベント・アルポーゲ氏は、「Claude」と共同で未解決問題「リーマン予想」の証明を発見したと発表した。",
+      "category": "tech",
+      "source": "ITmedia NEWS",
+      "published": "2026-11-22T08:21:31+09:00",
+      "url": "https://www.itmedia.co.jp/news/article/2611/22/2000003388/",
+      "others": [
+        {
+          "source": "ITmedia AI+",
+          "url": "https://www.itmedia.co.jp/news/article/2611/22/2000003388/"
+        }
+      ],
+      "importance": 1
+    },
+    {
+      "id": "773a710a32af",
+      "title": "プロ格闘家から転身の登山家 エベレスト登頂で得た自己肯定感",
+      "summary": "",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T08:15:12+09:00",
+      "url": "https://mainichi.jp/articles/20261119/k00/00m/310/155000c",
+      "importance": 1
+    },
+    {
+      "id": "c0cc5e72ebc2",
+      "title": "「フジテレビ側の意向で」 倉本聰さん明かす「北の国から」秘話",
+      "summary": "",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T08:00:16+09:00",
+      "url": "https://mainichi.jp/articles/20261119/k00/00m/200/010000c",
+      "importance": 1
+    },
+    {
+      "id": "450c55c8882b",
+      "title": "勢いに乗る「洋流」勝敗の鍵に 台湾統一選で注目集める穏やかさ",
+      "summary": "",
+      "category": "world",
+      "source": "毎日新聞",
+      "published": "2026-11-22T08:00:16+09:00",
+      "url": "https://mainichi.jp/articles/20261121/k00/00m/030/212000c",
+      "importance": 1
+    },
+    {
+      "id": "fff4686ebd51",
+      "title": "「西高東低」の高齢者医療費、なぜ地域差1.5倍？ 保険料にも違い",
+      "summary": "",
+      "category": "science",
+      "source": "朝日新聞",
+      "published": "2026-11-22T08:00:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCL2TB0VCLULFA02LM.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "b2269fba5992",
+      "title": "廃校をスポーツ合宿施設に 「銚子を元気に」元ラガーマンの挑戦",
+      "summary": "",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T07:45:10+09:00",
+      "url": "https://mainichi.jp/articles/20261119/k00/00m/310/159000c",
+      "importance": 1
+    },
+    {
+      "id": "c8eea8cfc53d",
+      "title": "ＡＩ有事、初動の数時間が鍵 日本の知見、多国間協力に―専門家",
+      "summary": "",
+      "category": "domestic",
+      "source": "時事通信",
+      "published": "2026-11-22T07:44:00+09:00",
+      "url": "https://www.jiji.com/jc/article?k=2026112100351&g=int&m=rss",
+      "importance": 1
+    },
+    {
+      "id": "6a383e10ccf5",
+      "title": "左派政権存続か、右派返り咲きか スペイン総選挙まで１週間",
+      "summary": "",
+      "category": "politics",
+      "source": "時事通信",
+      "published": "2026-11-22T07:43:00+09:00",
+      "url": "https://www.jiji.com/jc/article?k=2026112100348&g=int&m=rss",
+      "importance": 1
+    },
+    {
+      "id": "3065d49c9597",
+      "title": "台湾地方選、与党に勢い 野党地盤の台北で激戦―投開票まで１週間",
+      "summary": "",
+      "category": "politics",
+      "source": "時事通信",
+      "published": "2026-11-22T07:42:00+09:00",
+      "url": "https://www.jiji.com/jc/article?k=2026112100337&g=int&m=rss",
+      "importance": 1
+    },
+    {
+      "id": "d4ac426eca06",
+      "title": "静の永瀬九段vs動の佐々木八段 意地の張り合い A級順位戦観戦記",
+      "summary": "",
+      "category": "domestic",
+      "source": "毎日新聞",
+      "published": "2026-11-22T07:30:15+09:00",
+      "url": "https://mainichi.jp/articles/20261122/k00/00m/200/006000c",
+      "importance": 1
+    },
+    {
+      "id": "b05301150ed4",
+      "title": "入校初日に胸ぐらつかむ 東京消防庁、助教を処分「メンタル強く…」",
+      "summary": "",
+      "category": "domestic",
+      "source": "朝日新聞",
+      "published": "2026-11-22T07:30:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCN3K7QVCNUTIL01FM.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "2577731899cf",
+      "title": "高速PA・SA、3分の1でごみ箱撤去へ 不法投棄やまず、注射器も",
+      "summary": "",
+      "category": "domestic",
+      "source": "朝日新聞",
+      "published": "2026-11-22T07:00:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCN2Q9ZVCNOIPE00BM.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "a01515102e7a",
+      "title": "首里城の復元、科学に裏打ちされた和の匠の技術 Newtonで読む",
+      "summary": "",
+      "category": "domestic",
+      "source": "朝日新聞",
+      "published": "2026-11-22T07:00:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCJ2TF2VCJBNEH003M.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "1e6c6d6281f0",
+      "title": "ＡＩ危機管理、米中から世界へ 日本の役割も焦点",
+      "summary": "",
+      "category": "domestic",
+      "source": "時事通信",
+      "published": "2026-11-22T06:58:00+09:00",
+      "url": "https://www.jiji.com/jc/article?k=2026112100363&g=int&m=rss",
+      "importance": 1
+    },
+    {
+      "id": "43e0e195a574",
+      "title": "次期防衛費、ローンが圧迫 「６０兆円無責任」与党猛反発",
+      "summary": "",
+      "category": "politics",
+      "source": "時事通信",
+      "published": "2026-11-22T06:57:00+09:00",
+      "url": "https://www.jiji.com/jc/article?k=2026112100340&g=pol&m=rss",
+      "importance": 1
+    },
+    {
+      "id": "f7efe0100bff",
+      "title": "沖縄の象徴、「もう失わないで」 首里城正殿、２２日完成式",
+      "summary": "",
+      "category": "domestic",
+      "source": "時事通信",
+      "published": "2026-11-22T06:57:00+09:00",
+      "url": "https://www.jiji.com/jc/article?k=2026112100335&g=soc&m=rss",
+      "importance": 1
+    },
+    {
+      "id": "b02853036c90",
+      "title": "関文科相の進退焦点に 与党に辞任論、野党問責判断へ",
+      "summary": "",
+      "category": "politics",
+      "source": "時事通信",
+      "published": "2026-11-22T06:56:00+09:00",
+      "url": "https://www.jiji.com/jc/article?k=2026112100387&g=pol&m=rss",
+      "importance": 1
+    },
+    {
+      "id": "7f53452dff19",
+      "title": "僕が名字を変える 予想以上だった不公平「自分は自分のままだけど」",
+      "summary": "",
+      "category": "domestic",
+      "source": "朝日新聞",
+      "published": "2026-11-22T06:00:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCN1SDJVCNUTFL001M.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "212335b8bb3f",
+      "title": "老舗洋菓子店で盲導犬とふれあい 親子30人、テス先生から学ぶ",
+      "summary": "",
+      "category": "domestic",
+      "source": "朝日新聞",
+      "published": "2026-11-22T06:00:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCP2DNCVCPOXIE00NM.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "dbd8a5b65914",
+      "title": "「オープンAIの文化壊れてた」 暴走止められず、辞めた社員の告白",
+      "summary": "",
+      "category": "tech",
+      "source": "朝日新聞",
+      "published": "2026-11-22T06:00:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCP2J36VCPUHBI020M.html?ref=rss",
+      "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
+      "importance": 1
+    },
+    {
+      "id": "28470f53be51",
+      "title": "歩道に本物そっくりのピアノ、なぜ？ 「音楽の街」が目指したもの",
+      "summary": "",
+      "category": "domestic",
+      "source": "朝日新聞",
+      "published": "2026-11-22T06:00:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCM23RZVCMPTIL009M.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "fbc04f67bcf5",
+      "title": "AIに必要なのは知識か、企業独自の判断基準か？ 管理職調査で見えたAI活用の盲点",
+      "summary": "管理職を対象とした勤務先でのAI活用に関する調査では、半数以上が利用されなくなったAIツールや用途があると回答した。背景には、企業独自の判断基準に関わる課題があるようだ。",
+      "category": "tech",
+      "source": "ITmedia AI+",
+      "published": "2026-11-22T06:00:00+09:00",
+      "url": "https://kn.itmedia.co.jp/kn/article/2611/22/2000003384/",
+      "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
+      "importance": 1
+    },
+    {
+      "id": "614d97cba6fa",
+      "title": "住宅から現金2500万円と金塊20キロ盗まれる 警察が捜査 兵庫",
+      "summary": "",
+      "category": "domestic",
+      "source": "朝日新聞",
+      "published": "2026-11-22T00:16:51+09:00",
+      "url": "http://www.asahi.com/articles/ASVCP51T9VCPPLZB00BM.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "782b3de17b27",
+      "title": "玄関先に嬰児の遺体、置いた人物を死体遺棄容疑で捜査 東京・多摩",
+      "summary": "",
+      "category": "society",
+      "source": "朝日新聞",
+      "published": "2026-11-21T20:15:00+09:00",
+      "url": "http://www.asahi.com/articles/ASVCP3JQ7VCPUTIL00FM.html?ref=rss",
+      "importance": 1
+    },
+    {
+      "id": "cc2a56056aff",
+      "title": "AIは人並みに動画編集できる？ “バズる切り抜き”からガジェット開封動画まで2つのツールを試す",
+      "summary": "ネット動画では、長尺コンテンツから短い動画を大量に切り出す手法が主流になりつつある。ただ、必要なところを自分で拾い上げる編集は一朝一夕には身につかない。ならばAIに任せればいいのでは？",
+      "category": "tech",
+      "source": "ITmedia NEWS",
+      "published": "2026-11-21T15:38:29+09:00",
+      "url": "https://www.itmedia.co.jp/news/article/2611/21/2000003387/",
+      "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
+      "importance": 1
+    },
+    {
+      "id": "9c5b1806d47e",
+      "title": "企業はAIをどう選ぶようになった？ ChatGPT、Copilot、Geminiの勢力図",
+      "summary": "企業が業務で利用するAIサービスの顔ぶれが変わりつつある。従来のように個別のAIサービスを選ぶだけでなく、既存の業務環境に組み込まれたAIを利用する動きも広がっているようだ。",
+      "category": "tech",
+      "source": "ITmedia AI+",
+      "published": "2026-11-21T14:22:15+09:00",
+      "url": "https://kn.itmedia.co.jp/kn/article/2611/21/2000003385/",
+      "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
+      "importance": 1
+    },
+    {
+      "id": "8442068e4911",
+      "title": "英・EU、食品輸出や青少年プログラムなどで合意 関係深化を検討するとバーナム英首相",
+      "summary": "イギリスと欧州連合（EU）は20日、イギリスの食品輸出、排出量取引、青少年体験プログラムなどに関する合意に達した。バーナム英首相は、EUとのより緊密な関係構築に向けた選択肢について今後、協議していくと述べた。",
+      "category": "world",
+      "source": "BBC News Japan",
+      "published": "2026-11-21T12:45:57+09:00",
+      "url": "https://www.bbc.com/japanese/articles/c61wr0wnnpxpo?at_medium=RSS&at_campaign=rss",
+      "image": "https://ichef.bbci.co.uk/ace/ws/240/cpsprodpb/4b92/live/7ef50e70-e511-11f1-a094-5fdc692f3e33.jpg",
+      "importance": 1
+    },
+    {
+      "id": "a58bf776be25",
+      "title": "ポーランドにロシアのミサイル着弾とトゥスク首相 近くでウクライナの同盟国が演習中",
+      "summary": "ポーランド政府は20日、ロシアが夜間にポーランド領空を侵犯したと発表した。同日未明に領空を侵犯した三つの物体のうち、一つはロシアの巡航ミサイルだったという。",
+      "category": "world",
+      "source": "BBC News Japan",
+      "published": "2026-11-21T11:03:21+09:00",
+      "url": "https://www.bbc.com/japanese/articles/cxg5rdrdlq6no?at_medium=RSS&at_campaign=rss",
+      "image": "https://ichef.bbci.co.uk/ace/ws/240/cpsprodpb/cbb7/live/b5de9720-e4ea-11f1-99b6-a35a62fa4264.jpg",
+      "importance": 1
+    },
+    {
+      "id": "64365ce1f6cd",
+      "title": "米ナスダック急落、アンソロピック株も ハイテク株に売り圧力",
+      "summary": "20日の米株式市場では、ハイテク株が幅広く売られ、市場全体を押し下げた。前日に上場し急騰したばかりのAI開発大手アンソロピック株も、公開価格の水準まで下落した。",
+      "category": "world",
+      "source": "BBC News Japan",
+      "published": "2026-11-21T10:58:05+09:00",
+      "url": "https://www.bbc.com/japanese/articles/cx62pzp8dgv4o?at_medium=RSS&at_campaign=rss",
+      "image": "https://ichef.bbci.co.uk/ace/ws/240/cpsprodpb/03d5/live/7b6fe9b0-e4ed-11f1-8781-bf15c9202663.jpg",
+      "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
+      "importance": 1
+    },
+    {
+      "id": "80c508e366c6",
+      "title": "AIで成果を出す企業ほど「人を増やす」？ “通説”を否定する調査結果をIDCが発表",
+      "summary": "「AIが普及すれば企業の人員は減る」という通説と食い違う調査結果を、IDCが発表した。AI投資で高いROIを得ている組織ほど、今後の増員を見込む割合が高い。AIで成果を出す企業が人員を増やすのはなぜか。",
+      "category": "tech",
+      "source": "ITmedia AI+",
+      "published": "2026-11-21T09:00:00+09:00",
+      "url": "https://www.itmedia.co.jp/enterprise/articles/2611/21/news003.html",
+      "glossary": "AI：人工知能。人のように学んだり、判断したりするコンピューターの技術。",
+      "importance": 1
+    }
+  ]
+}
