@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T14:08:15+09:00",
+  "generated_at": "2026-11-25T12:57:05+09:00",
   "feeds": [
     {
       "name": "NHK",
@@ -82,14 +82,14 @@
       "name": "厚生労働省",
       "url": "https://www.mhlw.go.jp/stf/news.rdf",
       "ok": true,
-      "items": 111,
+      "items": 109,
       "error": ""
     },
     {
       "name": "日本銀行",
       "url": "https://www.boj.or.jp/rss/whatsnew.xml",
       "ok": true,
-      "items": 67,
+      "items": 68,
       "error": ""
     },
     {
