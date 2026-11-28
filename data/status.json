@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T12:29:03+09:00",
+  "generated_at": "2026-11-28T12:05:03+09:00",
   "feeds": [
     {
       "name": "NHK",
@@ -82,7 +82,7 @@
       "name": "厚生労働省",
       "url": "https://www.mhlw.go.jp/stf/news.rdf",
       "ok": true,
-      "items": 121,
+      "items": 134,
       "error": ""
     },
     {
